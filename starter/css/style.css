@@ -42,17 +42,21 @@ position: relative;
 }
 .logo{
   height: 35px;
+  animation: moveInleft 1s ease-out;
 }
+
 .text-box{
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%,-50%);
+  text-align: center;
 }
 
 .heading-primary{
  color: #fff;
  text-transform: uppercase;
+ margin-bottom: 60px;
 }
 .heading-primary-main{
   display: block;
@@ -78,6 +82,60 @@ position: relative;
 }
 
 
+
+/*因为添加了<a>标签，所以需要添加:hover和:active伪类选中链接 */
+.btn:link,
+.btn:visited{
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 15px 40px;
+  border-radius: 100px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.btn-white{
+  background-color: #fff;
+  color: #777;
+}
+
+.btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.btn:active{
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.btn::after{
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.2s;
+}
+.btn-white::after{
+  background-color: #fff;
+
+}
+.btn:hover::after{
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated{
+  animation: moveInbottom 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards; 
+  /* 如果设置这个，将会在延迟阶段默认显示基础样式，加后将会在延迟阶段进入0％状态 */
+}
 
 @keyframes moveInleft{
 0%{
@@ -106,5 +164,16 @@ position: relative;
     opacity: 1;
     transform: translateX(0);
   }
+}
 
+/* 从下往上 */
+@keyframes moveInbottom{
+  0%{
+    opacity: 0;
+    transform:translateY(30px)
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
